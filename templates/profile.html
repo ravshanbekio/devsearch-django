@@ -85,15 +85,11 @@
                           Feedback (62 Votes)
                         </p>
                         <div class="project__tags">
-                          <span class="tag tag--pill tag--main">
-                            <small>NextJS</small>
-                          </span>
-                          <span class="tag tag--pill tag--main">
-                            <small>GraphQL</small>
-                          </span>
-                          <span class="tag tag--pill tag--main">
-                            <small>TypeScript</small>
-                          </span>
+                          {% for tag in account_project.tag.all %}
+                            <span class="tag tag--pill tag--main">
+                              <small>{{ tag }}</small>
+                            </span>
+                          {% endfor %}
                         </div>
                       </div>
                     </a>

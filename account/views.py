@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterUserForm, UserChangeForm, SkillForm, ProjectForm
-from account.models import Account, Project
+from account.models import Account, Project, Tag
 from django.core.paginator import Paginator
 from .utils import searchDevelopers
 
@@ -89,7 +89,7 @@ def myProfile(request, username):
 @login_required(login_url='signin')
 def editAccount(request):
     account = request.user
-    form = UserChangeForm(instance=profile)
+    form = UserChangeForm(instance=account)
 
     if request.method == "POST":
         form = UserChangeForm(request.POST, request.FILES, instance=account)
@@ -147,11 +147,16 @@ def createProject(request):
     account = request.user
 
     if request.method == "POST":
+        new_tags = request.POST.get('newtags').replace(','," ").split()
         form = ProjectForm(request.POST or None, request.FILES)
         if form.is_valid():
             project = form.save(commit=False)
             project.owner = account
             project.save()
+
+            for tag in new_tags:
+                tag, created = Tag.objects.get_or_create(tag_name=tag)
+                project.tag.add(tag)
             return redirect('myprofile',username=request.user.username)
 
     else:
