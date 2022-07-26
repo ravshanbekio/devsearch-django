@@ -77,10 +77,10 @@
             {% for profile_project in profile.projects.all %}
               <tr>
                 <td class="settings__thumbnail">
-                  <a href="single-project.html"><img src="{{ profile_project.preview_image.url }}" alt="Project Thumbnail" /></a>
+                  <a href="{% url 'project-detail' profile_project.slug %}"><img src="{{ profile_project.preview_image.url }}" alt="Project Thumbnail" /></a>
                 </td>
                 <td class="settings__tableInfo">
-                  <a href="single-project.html">{{ profile_project.title }}</a>
+                  <a href="{% url 'project-detail' profile_project.slug %}">{{ profile_project.title }}</a>
                   <p>
                    {{ profile_project.description }}
                   </p>

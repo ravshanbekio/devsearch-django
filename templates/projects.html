@@ -29,25 +29,21 @@
           {% for project in get_projects %}
             <div class="column">
               <div class="card project">
-                <a href="single-project.html" class="project">
+                <a href="{% url 'project-detail' project.slug %}" class="project">
                   <img class="project__thumbnail" src="{{ project.preview_image.url }}" alt="project thumbnail" />
                   <div class="card__body">
                     <h3 class="project__title">{{ project.title }}</h3>
-                    <p><a class="project__author" href="profile.html">{{ project.owner.full_name }}</a></p>
+                    <p><a class="project__author" href="{% url 'profile-detail' project.owner_id %}">by {{ project.owner.full_name }}</a></p>
                     <p class="project--rating">
                       <span style="font-weight: bold;">98%</span> Postitive
                       Feedback (72 Votes)
                     </p>
                     <div class="project__tags">
-                      <span class="tag tag--pill tag--main">
-                        <small>NextJS</small>
-                      </span>
-                      <span class="tag tag--pill tag--main">
-                        <small>GraphQL</small>
-                      </span>
-                      <span class="tag tag--pill tag--main">
-                        <small>TypeScript</small>
-                      </span>
+                      {% for tag in project.tag.all %}
+                        <span class="tag tag--pill tag--main">
+                          <small>{{ tag }}</small>
+                        </span>
+                      {% endfor %}
                     </div>
                   </div>
                 </a>

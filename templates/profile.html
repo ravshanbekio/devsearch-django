@@ -75,11 +75,11 @@
               {% for account_project in account_query.projects.all %}
                 <div class="column">
                   <div class="card project">
-                    <a href="single-project.html" class="project">
+                    <a href="{% url 'project-detail' account_project.slug %}" class="project">
                       <img class="project__thumbnail" src="{{ account_project.preview_image.url }}" alt="project thumbnail" />
                       <div class="card__body">
                         <h3 class="project__title">{{ account_project.title }}</h3>
-                        <p><a class="project__author" href="profile.html">{{ account_query.full_name }}</a></p> 
+                        <p><a class="project__author" href="{% url 'profile-detail' account_project.owner_id %}">{{ account_query.full_name }}</a></p> 
                         <p class="project--rating">
                           <span style="font-weight: bold;">92%</span> Postitive
                           Feedback (62 Votes)
