@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Main Section -->
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{% url 'myprofile' request.user.username %}"><i class="im im-angle-left"></i></a>
+                <br>
+
+                <form class="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form__field">
+                        {{ form.full_name }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.email }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.username }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.direction }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.bio }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.address }}
+                    </div>
+                    <div class="form__field">
+                        {{ form.avatar }}
+                    </div>
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
