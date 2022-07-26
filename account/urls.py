@@ -15,8 +15,4 @@ urlpatterns = [
     path('create-skill/',views.createSkill, name='create-skill'),
     path('edit-skill/<int:pk>/',views.editSkill, name='edit-skill'),
     path('delete-skill/<int:pk>',views.deleteSkill, name='delete-skill'),
-
-    path('create-project/',views.createProject, name='create-project'),
-    path('edit-project/<slug:slug>/',views.editProject, name='edit-project'),
-    path('delete-project/<slug:slug>/',views.deleteProject, name='delete-project'),
 ]

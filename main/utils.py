@@ -1,5 +1,5 @@
 from django.db.models import Q
-from account.models import Project
+from .models import Project
 
 def searchProjects(request):
 

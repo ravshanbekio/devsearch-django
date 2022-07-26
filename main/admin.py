@@ -1,4 +1,5 @@
 from django.contrib import admin
-from account.models import Tag
+from .models import Tag, Project
 
 admin.site.register(Tag)
+admin.site.register(Project)

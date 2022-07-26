@@ -137,4 +137,4 @@ LOGIN_REDIRECT_URL = 'home'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.Account'
 
-PROJECT_MODEL = 'account.Project'
+PROJECT_MODEL = 'main.Project'
