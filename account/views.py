@@ -140,3 +140,8 @@ def deleteSkill(request, pk):
     skill = account.skill.get(id=pk)
     skill.delete()
     return redirect('myprofile',username=request.user.username)
+
+@login_required(login_url='signin')
+def inbox(request):
+    return render(request, 'inbox.html')
+

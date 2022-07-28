@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .utils import searchProjects
 from .models import Project, Tag
-from .forms import ProjectForm
+from .forms import ProjectForm, CommentForm
 
 def projects(request):
 
@@ -17,8 +17,19 @@ def projects(request):
 def project(request, slug):
     project = get_object_or_404(Project, slug=slug)
 
+    if request.method == "POST":
+        form = CommentForm(request.POST or None)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.account = project.owner
+            comment.project = project
+            comment.save()
+            return redirect('project-detail',slug=slug)
+    else:
+        form = CommentForm
     context = {
-        'project':project
+        'project':project,
+        'form':form
     }
 
     return render(request, 'single-project.html', context)

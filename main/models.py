@@ -29,4 +29,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.tag_name
 
+class Comment(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='get_comments')
+    comment = models.TextField(max_length=300)
+
+    def __str__(self):
+        return self.comment
+
 project_pre_save(instance=Project)
