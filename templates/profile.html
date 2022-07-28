@@ -10,8 +10,8 @@
           <div class="card text-center">
             <div class="card__body dev">
               <img class="avatar avatar--xl" src="{{ account_query.avatar.url }}" />
-              <h2 class="dev__name">{{ account_query.full_name }}</h2>
-              <p class="dev__title">{{ account_query.direction }}</p>
+              <h2 class="dev__name">{{ account_query.full_name|title }}</h2>
+              <p class="dev__title">{{ account_query.direction|title }}</p>
               {% if account_query.address %}
                 <p class="dev__location">Based in {{ account_query.address }}</p>
               {% endif %}
@@ -42,7 +42,7 @@
           <div class="devInfo">
             <h3 class="devInfo__title">About Me</h3>
             <p class="devInfo__about">
-              {{ account_query.bio }}
+              {{ account_query.bio|linebreaks|urlize }}
             </p>
           </div>
           <div class="devInfo">
@@ -50,9 +50,9 @@
             <div class="devInfo__skills">
               {% for account_skill in account_query.skill.all %}
                 <div class="devSkill">
-                  <h4 class="devSkill__title">{{account_skill.name}} </h4>
+                  <h4 class="devSkill__title">{{account_skill.name|title}} </h4>
                   <p class="devSkill__info">
-                    {{ account_skill.description }}
+                    {{ account_skill.description|linebreaks|urlize }}
                   </p>
                 </div>
               {% endfor %}
@@ -78,8 +78,8 @@
                     <a href="{% url 'project-detail' account_project.slug %}" class="project">
                       <img class="project__thumbnail" src="{{ account_project.preview_image.url }}" alt="project thumbnail" />
                       <div class="card__body">
-                        <h3 class="project__title">{{ account_project.title }}</h3>
-                        <p><a class="project__author" href="{% url 'profile-detail' account_project.owner_id %}">{{ account_query.full_name }}</a></p> 
+                        <h3 class="project__title">{{ account_project.title|title }}</h3>
+                        <p><a class="project__author" href="{% url 'profile-detail' account_project.owner_id %}">{{ account_query.full_name|title }}</a></p> 
                         <p class="project--rating">
                           <span style="font-weight: bold;">92%</span> Postitive
                           Feedback (62 Votes)
@@ -87,7 +87,7 @@
                         <div class="project__tags">
                           {% for tag in account_project.tag.all %}
                             <span class="tag tag--pill tag--main">
-                              <small>{{ tag }}</small>
+                              <small>{{ tag|title }}</small>
                             </span>
                           {% endfor %}
                         </div>

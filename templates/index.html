@@ -36,17 +36,17 @@
                   <div class="dev__profile">
                     <img class="avatar avatar--md" src="{{ developer.avatar.url }}" alt="image" />
                     <div class="dev__meta">
-                      <h3>{{ developer.full_name }}</h3>
-                      <h5>{{ developer.direction }}</h5>
+                      <h3>{{ developer.full_name|title }}</h3>
+                      <h5>{{ developer.direction|title }}</h5>
                     </div>
                   </div>
                   <p class="dev__info">
-                    {{ developer.bio }}
+                    {{ developer.bio|linebreaks|urlize }}
                   </p>
                   <div class="dev__skills">
                     {% for skill in developer.skill.all %}
                       <span class="tag tag--pill tag--main">
-                        <small>{{ skill.name }}</small>
+                        <small>{{ skill.name|title }}</small>
                       </span>
                     {% endfor %}
                   </div>

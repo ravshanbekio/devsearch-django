@@ -10,8 +10,8 @@
             <div class="card__body dev">
               <!-- <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-edit"></i> Edit</a> -->
               <img class="avatar avatar--xl dev__avatar" src="{{ profile.avatar.url }}" />
-              <h2 class="dev__name">{{ profile.full_name }}</h2>
-              <p class="dev__title">{{ profile.direction }}</p>
+              <h2 class="dev__name">{{ profile.full_name|title }}</h2>
+              <p class="dev__title">{{ profile.direction|title }}</p>
               {% if profile.address %}
                 <p class="dev__location">Based in {{ profile.address }}</p>
               {% endif %}
@@ -42,7 +42,7 @@
           <div class="devInfo">
             <h3 class="devInfo__title">About Me</h3>
             <p class="devInfo__about">
-              {{ profile.bio }}
+              {{ profile.bio|linebreaks|urlize }}
             </p>
           </div>
           <div class="settings">
@@ -54,9 +54,9 @@
             {% for profile_skill in profile.skill.all %}
               <tr>
                 <td class="settings__tableInfo">
-                  <h4>{{ profile_skill.name }}</h4>
+                  <h4>{{ profile_skill.name|title }}</h4>
                   <p>
-                    {{ profile_skill.description }}
+                    {{ profile_skill.description|linebreaks|urlize }}
                   </p>
                 </td>
                 <td class="settings__tableActions">
@@ -80,9 +80,9 @@
                   <a href="{% url 'project-detail' profile_project.slug %}"><img src="{{ profile_project.preview_image.url }}" alt="Project Thumbnail" /></a>
                 </td>
                 <td class="settings__tableInfo">
-                  <a href="{% url 'project-detail' profile_project.slug %}">{{ profile_project.title }}</a>
+                  <a href="{% url 'project-detail' profile_project.slug %}">{{ profile_project.title|title }}</a>
                   <p>
-                   {{ profile_project.description }}
+                   {{ profile_project.description|linebreaks|urlize|truncatewords:30 }}
                   </p>
                 </td>
                 <td class="settings__tableActions">
